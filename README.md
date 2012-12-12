@@ -34,13 +34,3 @@ http://www.kkn.net/~trey/cabrillo/qso-template.html
 
 Version History
 ---------------
-v0.03 (22 Mar 2006)
-- compatibility with Cabrillo logs where TX# is not on column 80
-
-v0.02 (14 Mar 2005)
-- Configurable max QSY count
-- for ARRL-DX(=6 in addition to 8 for CQ-WW)
-
-v0.01 (10 Dec 2004)
-- First Release
-- for CQ-WW
