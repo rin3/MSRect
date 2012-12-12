@@ -6,6 +6,11 @@ for Multi SingleTX contest log
 
 rin fukuda, jg1vgx@jarl.com
 
+WARNING
+-------
+This program is NOT intended for use with post-contest rubber-clocking or log massaging purposes.
+If you find you have violated the band change rules, mark the QSOs as X-QSOs or consider submitting your log in less restrictive categories such as multi-multi.
+
 Requirements
 ------------
 You need Perl package to run this script. If you are on Windows, use ActivePerl (http://www.activestates.com/) or Windows Services for Unix (http://www.microsoft.com/japan/windows/sfu/), which also includes Perl. 
