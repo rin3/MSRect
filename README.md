@@ -1,7 +1,7 @@
 ### _MSRect.pl_
 M/S Log Rectifier
 =================
-Prechecking integrity of the QSO records in a Cabrillo format
+Cabrillo log checker for its compliance to the rules
 for Multi SingleTX contest log
 
 rin fukuda, jg1vgx@jarl.com
