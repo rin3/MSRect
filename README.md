@@ -2,7 +2,7 @@
 M/S Log Rectifier
 =================
 Cabrillo log checker for its compliance to the rules
-for Multi SingleTX contest log
+for Multi SingleTX contest logs
 
 rin fukuda, jg1vgx@jarl.com
 
