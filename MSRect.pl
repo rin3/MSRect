@@ -11,6 +11,8 @@
 
 use strict;
 
+use constant CTYFILE => "cty.dat";
+
 # setting bands
 my @bands = qw/  160   80   40    20    15    10 /;
 my @map_l = qw/ 1800 3500 7000 14000 21000 28000 /;
@@ -25,11 +27,21 @@ print "\n*** M/S Log Checker ***\n\n";
 print "Input file name (Cabrillo): ";
 chomp(my $infile = <STDIN>);
 print "\n";
-open F, $infile or die "Can't open $infile!\n";
+open F, $infile or die "Can't open \"$infile\"! Aborted.\n";
 
-
+# open country file
+open FC, "cty.dat" or die "Can't find \"".CTYFILE."\"! Aborted.\n";
 
 my @qsos;	# original qso array read from source
-my @qsox;	# working qso array
-my $lastline;
-my $qsolen;	#length of a QSO line
+##my @qsox;	# working qso array
+##my $lastline;
+##my $qsolen;	#length of a QSO line
+my @ctys;	# array that holds country file as is
+
+while(<FC>) {
+	push @ctys, $_;
+	print;
+}
+
+close F;
+close FC;
