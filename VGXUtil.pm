@@ -5,13 +5,14 @@ use strict;
 
 use constant CTYFILE => "cty.dat";
 
-my @ctys;
+# variables and arrays
+my @ctys; # raw country file
 
 sub load_ctyfile {
-	open FC, CTYFILE or die "Error: Country file \"".CTYFILE."\" not found. Aborted.\n";
+	open FC, CTYFILE or die "Error: Can't find country file \"".CTYFILE."\"! Aborted.\n";
+	# populate country file array
 	while(<FC>) {
 		push @ctys, $_;
-	print;
 	}
 	close FC;
 }
