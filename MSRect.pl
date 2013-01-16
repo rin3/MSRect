@@ -38,10 +38,14 @@ my @qsos;	# original qso array read from source
 ##my $qsolen;	#length of a QSO line
 my @ctys;	# array that holds country file as is
 
+# read country files into an array
 while(<FC>) {
 	push @ctys, $_;
-	print;
 }
+
+
+
+
 
 close F;
 close FC;
