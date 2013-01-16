@@ -10,6 +10,7 @@
 # ver ####################
 
 use strict;
+use VGXUtil;
 
 use constant CTYFILE => "cty.dat";
 
@@ -30,22 +31,20 @@ print "\n";
 open F, $infile or die "Can't open \"$infile\"! Aborted.\n";
 
 # open country file
-open FC, "cty.dat" or die "Can't find \"".CTYFILE."\"! Aborted.\n";
+#open FC, "cty.dat" or die "Can't find \"".CTYFILE."\"! Aborted.\n";
 
-my @qsos;	# original qso array read from source
+VGXUtil::load_ctyfile();
+
+#my @qsos;	# original qso array read from source
 ##my @qsox;	# working qso array
 ##my $lastline;
 ##my $qsolen;	#length of a QSO line
-my @ctys;	# array that holds country file as is
+#my @ctys;	# array that holds country file as is
 
 # read country files into an array
-while(<FC>) {
-	push @ctys, $_;
-}
-
-
-
-
+#while(<FC>) {
+#	push @ctys, $_;
+#}
 
 close F;
-close FC;
+#close FC;
