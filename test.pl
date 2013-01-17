@@ -6,4 +6,6 @@ use VGXUtil;
 
 VGXUtil::load_ctyfile();
 
-print "pass!!\n";
+VGXUtil::lookup_cty();
+
+print "DONED!!\n";
