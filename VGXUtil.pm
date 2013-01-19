@@ -28,25 +28,24 @@ sub lookup_cty {
 		} else { # first char is whitespace
 			# see if the line ends with a ;
 			if (s/^\s*(\S*)\s*;\s*$/$1/) { # removing at the same time any whitespaces
-        		# yes, this is the last line of a country prefixes
-        		push @cty2, split('\s*,\s*'); # removing any whitespaces 'tween
+        			# yes, this is the last line of a country prefixes
+        			push @cty2, split('\s*,\s*'); # removing any whitespaces 'tween
 
-		        # parsing prefixes array
-        		foreach (@cty2) {
+			        # parsing prefixes array
+        			foreach (@cty2) {
 					if ($_[0] =~ /^$_/) {
-					print "MATched\n";
-				}
-        	}
+						print "MATched\n";
+					}
+        			}
         
-		#print join('_', @cty2);
-		#print "+COLON\n";
-        
-        
-        @cty2 = (); # clear the prefixes array
+				#print join('_', @cty2);
+				#print "+COLON\n";
+				
+			        @cty2 = (); # clear the prefixes array
 			} else {
-        # no, not the last line of a country prefixes, list continues
-        s/^\s*(\S*)\s*$/$1/; # removing any whitespaces, at the head and end
-        push @cty2, split('\s*,\s*'); # removing any whitespaces 'tween
+        			# no, not the last line of a country prefixes, list continues
+        			s/^\s*(\S*)\s*$/$1/; # removing any whitespaces, at the head and end
+        			push @cty2, split('\s*,\s*'); # removing any whitespaces 'tween
 			}
 		}
 	}
