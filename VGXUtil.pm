@@ -19,33 +19,33 @@ my @cty2; # other lines of country data (prefixes array)
 #       1: WAEDC list flag (0=no, 1=yes)
 sub lookup_cty {
 	foreach (@ctys) {
-    	chomp;
+		chomp;
 		if (/^\S/) { # if first char is not whitespace
 			@cty1 = split('\s*:\s*');
-			
+
 			print $cty1[7]."\n"; # still including *
-			
+
 		} else { # first char is whitespace
 			# see if the line ends with a ;
 			if (s/^\s*(\S*)\s*;\s*$/$1/) { # removing at the same time any whitespaces
-        			# yes, this is the last line of a country prefixes
-        			push @cty2, split('\s*,\s*'); # removing any whitespaces 'tween
+				# yes, this is the last line of a country prefixes
+				push @cty2, split('\s*,\s*'); # removing any whitespaces 'tween
 
-			        # parsing prefixes array
-        			foreach (@cty2) {
+				# parsing prefixes array
+				foreach (@cty2) {
 					if ($_[0] =~ /^$_/) {
 						print "MATched\n";
 					}
-        			}
-        
+				}
+
 				#print join('_', @cty2);
 				#print "+COLON\n";
 				
-			        @cty2 = (); # clear the prefixes array
+				@cty2 = (); # clear the prefixes array
 			} else {
-        			# no, not the last line of a country prefixes, list continues
-        			s/^\s*(\S*)\s*$/$1/; # removing any whitespaces, at the head and end
-        			push @cty2, split('\s*,\s*'); # removing any whitespaces 'tween
+				# no, not the last line of a country prefixes, list continues
+				s/^\s*(\S*)\s*$/$1/; # removing any whitespaces, at the head and end
+				push @cty2, split('\s*,\s*'); # removing any whitespaces 'tween
 			}
 		}
 	}

@@ -6,9 +6,7 @@ use VGXUtil;
 
 VGXUtil::load_ctyfile();
 
-while(<>) {
-	chomp;
-	VGXUtil::lookup_cty($_,1);
-}
 
-print "===== ENDDED!! ======\n";
+VGXUtil::lookup_cty('BY1DX',1);
+
+print "DONED!!\n";
