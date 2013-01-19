@@ -3,6 +3,7 @@
 package VGXUtil;
 
 use strict;
+use warnings;
 
 use constant CTYFILE => "cty.dat";
 
@@ -18,34 +19,35 @@ my @cty2; # other lines of country data (prefixes array)
 # args: 0: callsign string
 #       1: WAEDC list flag (0=no, 1=yes)
 sub lookup_cty {
-	foreach (@ctys) {
-		chomp;
-		if (/^\S/) { # if first char is not whitespace
-			@cty1 = split('\s*:\s*');
+	print "=======\n";
+	print @ctys;
+	print "=+++++=\n";
+	foreach my $k (@ctys) {
+		chomp($k);
+		if ( $k =~ /^\S/) { # if first char is not whitespace
+			@cty1 = split('\s*:\s*', $k);
 
-			print $cty1[7]."\n"; # still including *
+#			print "[A]$cty1[7]\n"; # still including *
 
 		} else { # first char is whitespace
 			# see if the line ends with a ;
-			if (s/^\s*(\S*)\s*;\s*$/$1/) { # removing at the same time any whitespaces
+			if ($k =~ s/^\s*(\S*)\s*;\s*$/$1/) { # removing at the same time any whitespaces
 				# yes, this is the last line of a country prefixes
-				push @cty2, split('\s*,\s*'); # removing any whitespaces 'tween
-
+				push @cty2, split('\s*,\s*', $k); # removing any whitespaces 'tween
+print "[C]Came last line\n";
 				# parsing prefixes array
 				foreach (@cty2) {
 					if ($_[0] =~ /^$_/) {
-						print "MATched\n";
+						print "[MATCH here above]\n";
 					}
 				}
 
-				#print join('_', @cty2);
-				#print "+COLON\n";
-				
 				@cty2 = (); # clear the prefixes array
 			} else {
 				# no, not the last line of a country prefixes, list continues
-				s/^\s*(\S*)\s*$/$1/; # removing any whitespaces, at the head and end
-				push @cty2, split('\s*,\s*'); # removing any whitespaces 'tween
+				$k =~ s/^\s*(\S*)\s*$/$1/; # removing any whitespaces, at the head and end
+				push @cty2, split('\s*,\s*', $k); # removing any whitespaces 'tween
+		print "[B]some lines, not last\n";
 			}
 		}
 	}
@@ -56,9 +58,10 @@ sub lookup_cty {
 sub load_ctyfile {
 	open FC, CTYFILE or die "Error: Can't find country file \"".CTYFILE."\"! Aborted.\n";
 	# populate country file array
-	while (<FC>) {
-		push @ctys, $_;
-	}
+	@ctys = <FC>;
+#	while (<FC>) {
+#		push @ctys, $_;
+#	}
 	close FC;
 }
 
