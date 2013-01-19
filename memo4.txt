@@ -1,0 +1,8 @@
+================
+_vimrc additions
+================
+""" by rin
+set tabstop=4
+set nobackup
+set nowritebackup
+set noswapfile
