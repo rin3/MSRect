@@ -25,6 +25,9 @@ sub lookup_cty {
 	foreach (@ctys) {
 		chomp;
 		if (/^\S/) { # if first char is not whitespace
+	print "=> ";
+	print;
+	print "\n";
 			@cty1 = split('\s*:\s*');
 			
 			print "[A]";
