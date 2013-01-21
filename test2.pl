@@ -23,5 +23,5 @@ foreach (@ttt1) {
 print "END\n\n";
 
 print "===\n";
-print @ttt1;
+print "@ttt1";
 print "===\n";

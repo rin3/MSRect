@@ -22,18 +22,20 @@ sub lookup_cty {
 	print "=======\n";
 	print @ctys;
 	print "=+++++=\n";
-	foreach my $k (@ctys) {
-		chomp($k);
-		if ( $k =~ /^\S/) { # if first char is not whitespace
-			@cty1 = split('\s*:\s*', $k);
-
-#			print "[A]$cty1[7]\n"; # still including *
+	foreach (@ctys) {
+		chomp;
+		if (/^\S/) { # if first char is not whitespace
+			@cty1 = split('\s*:\s*');
+			
+			print "[A]";
+			print $cty1[7];
+			print "\n"; # still including
 
 		} else { # first char is whitespace
 			# see if the line ends with a ;
-			if ($k =~ s/^\s*(\S*)\s*;\s*$/$1/) { # removing at the same time any whitespaces
+			if (s/^\s*(\S*)\s*;\s*$/$1/) { # removing at the same time any whitespaces
 				# yes, this is the last line of a country prefixes
-				push @cty2, split('\s*,\s*', $k); # removing any whitespaces 'tween
+				push @cty2, split('\s*,\s*'); # removing any whitespaces 'tween
 print "[C]Came last line\n";
 				# parsing prefixes array
 				foreach (@cty2) {
@@ -45,8 +47,8 @@ print "[C]Came last line\n";
 				@cty2 = (); # clear the prefixes array
 			} else {
 				# no, not the last line of a country prefixes, list continues
-				$k =~ s/^\s*(\S*)\s*$/$1/; # removing any whitespaces, at the head and end
-				push @cty2, split('\s*,\s*', $k); # removing any whitespaces 'tween
+				s/^\s*(\S*)\s*$/$1/; # removing any whitespaces, at the head and end
+				push @cty2, split('\s*,\s*'); # removing any whitespaces 'tween
 		print "[B]some lines, not last\n";
 			}
 		}
