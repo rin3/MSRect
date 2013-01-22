@@ -3,6 +3,7 @@
 use strict;
 #use warnings;
 
-my @ttt = qw{"ac", "bd", "sdfsd"};
+my @ttt = qw{ac\n, "bd\n", "sdfsd\n"};
 
-print "@ttt"."\n";
+print @ttt;
+print "\n";
