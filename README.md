@@ -13,24 +13,21 @@ If you find you have violated the band change rules, mark the QSOs as X-QSOs or 
 
 Requirements
 ------------
-You need Perl package to run this script. If you are on Windows, use ActivePerl (http://www.activestates.com/) or Windows Services for Unix (http://www.microsoft.com/japan/windows/sfu/), which also includes Perl. 
-
----
-BELOW is still in development.
+You need Perl package to run this script. If you are on Windows, use of ActivePerl (http://www.activestates.com/) is recommended. 
 
 How to Use
 ----------
-1. Prepare your Multi/2TX contest log in a Cabrillo format. Column positions, especially for the last TX#, should be strictly observed, otherwise this script won't work. Headers (before the QSO: section) and footers (after the QSO: section, usually END-OF-LOG: only) can contain any length of lines.
+1. Prepare your Multi/Single contest log in a Cabrillo format. Column positions, especially for the last TX#, should be strictly observed, otherwise this script won't work. Headers (before the QSO: section) and footers (after the QSO: section, usually END-OF-LOG: only) can contain any length of lines.
 Information about Cabrillo format is available here.
 http://www.kkn.net/~trey/cabrillo/qso-template.html
 
 2. Start the script, such as:
 
     ```
-    > perl M2Rect.pl
+    > perl MSRect.pl
     ```
     
-    then, enter the file name of the Cabrillo log. Hour summary of QSY counts will be shown in the screen. If excess QSYs had been detected, you will be warned. In that case, consider submitting your log into Multi/Multi category rather than Multi/2TX.
+    then, enter the file name of the Cabrillo log. Hour summary of QSY counts will be shown in the screen. If excess QSYs had been detected, you will be warned. If you find too many violations, consider submitting your log into Multi/Multi category rather than Multi/Single.
 
 3. The correctly numbered new Cabrillo log will be created as "new_" plus original file name. The original Cabrillo log is untouched. In addition, two report files are created.
 
