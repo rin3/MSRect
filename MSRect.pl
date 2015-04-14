@@ -16,7 +16,7 @@ my @bands = qw/  160   80   40    20    15    10 /;
 my @map_l = qw/ 1800 3500 7000 14000 21000 28000 /;
 my @map_h = qw/ 2000 4000 7300 14350 21450 29700 /;
 # column formatting for qsy report
-my @rpt_c = qw/    3    7   11    15    19    23 /;
+#my @rpt_c = qw/    3    7   11    15    19    23 /;
 
 # Greetings
 print "\n*** M/S Log Rectifier ***\n\n";
@@ -39,11 +39,10 @@ open F0, ">RunQSOs.txt" or die "Can't create an output file!\n";
 open F1, ">MultQSOs.txt" or die "Can't create an output file!\n";
 
 my @qsos;	# original qso array read from source
-my @qso0;	# run qso array
-my @qso1;	# mult qso array
+my(@qso0, @qso0a);	# run qso array
+my(@qso1, @qso1a);	# mult qso array
 #my $lastline;
 my $qsolen;	#length of a QSO line
-my $temp;
 
 # print headers to output file
 #while(<F>) {
@@ -64,6 +63,8 @@ while(<F>) {
 }
 # @qsos array is ready here
 
+close F;
+
 # locating the last column where TX# is written excluding LF, CR and any trailing spaces
 my $temp = $qsos[0];
 chop($temp) while(substr($temp, length($temp)-1, 1) eq chr(10) or substr($temp, length($temp)-1, 1) eq chr(13) or substr($temp, length($temp)-1, 1) eq ' ');
@@ -78,8 +79,8 @@ my $q;
 #my @band;		# holds band for each qsycount
 #my @txn;
 
+# sort and split run and mult qsos into each array
 while($q = shift @qsos) {
-	#
 	if(substr($q, $qsolen-1, 1) eq '0') {
 		# is run QSO
 		push @qso0, $q;
@@ -89,12 +90,46 @@ while($q = shift @qsos) {
 	}
 }
 
+#while($q = shift @qso0) {
+
+
+#}
+
+#&tag_time(\@qso0);
+
+
+
+
+
+
+
+
+
+
+
+
+
 print F0 @qso0;
 print F1 @qso1;
 
-close F;
 close F0;
 close F1;
+
+### subroutines
+
+sub tag_time {
+	print "tell me";
+	my($aref) = @_;
+	print $aref;
+	my @qso = @{$aref};
+	print @qso;
+
+}
+
+
+
+
+
 
 exit 0;
 

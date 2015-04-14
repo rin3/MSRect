@@ -5,6 +5,7 @@ Cabrillo log checker for its compliance to the rules
 for Multi SingleTX contest logs
 
 rin fukuda, jg1vgx@jarl.com
+ver 0.00 - Apr 2015
 
 WARNING
 -------
@@ -14,6 +15,10 @@ If you find you have violated the band change rules, mark the QSOs as X-QSOs or 
 Requirements
 ------------
 You need Perl package to run this script. If you are on Windows, use of ActivePerl (http://www.activestates.com/) is recommended. 
+
+Limitations
+-----------
+Currently, only band change violation is checked. (Whether QSOs made in mult transmitter is really a new mult is unchecked.)
 
 How to Use
 ----------
@@ -27,7 +32,7 @@ http://www.kkn.net/~trey/cabrillo/qso-template.html
     > perl MSRect.pl
     ```
     
-    then, enter the file name of the Cabrillo log. Hour summary of QSY counts will be shown in the screen. If excess QSYs had been detected, you will be warned. If you find too many violations, consider submitting your log into Multi/Multi category rather than Multi/Single.
+then, enter the file name of the Cabrillo log. Hour summary of QSY counts will be shown in the screen. If excess QSYs had been detected, you will be warned. If you find too many violations, consider submitting your log into Multi/Multi category rather than Multi/Single.
 
 3. The correctly numbered new Cabrillo log will be created as "new_" plus original file name. The original Cabrillo log is untouched. In addition, two report files are created.
 
@@ -36,3 +41,4 @@ http://www.kkn.net/~trey/cabrillo/qso-template.html
 
 Version History
 ---------------
+0.00 - Apr 2015
