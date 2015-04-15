@@ -6,8 +6,8 @@
 # Cabrillo log checker for its compliance to the rules
 # for Multi SingleTX contest logs
 #
-# rin fukuda, jg1vgx@jarl.com, Jan 2013
-# ver 0.00
+# rin fukuda, jg1vgx@jarl.com
+# ver 0.00 - Apr 2015
 
 use strict;
 
@@ -18,6 +18,10 @@ my @map_h = qw/ 2000 4000 7300 14350 21450 29700 /;
 # column formatting for qsy report
 #my @rpt_c = qw/    3    7   11    15    19    23 /;
 
+# file handles
+my($F, $F0, $F1);		# file handles
+my($nviol0, $nviol1) = (0, 0);	# number of violations
+
 # Greetings
 print "\n*** M/S Log Rectifier ***\n\n";
 
@@ -25,7 +29,7 @@ print "\n*** M/S Log Rectifier ***\n\n";
 print "Input file name (Cabrillo): ";
 chomp(my $infile = <STDIN>);
 print "\n";
-open F, $infile or die "Can't open $infile!\n";
+open $F, $infile or die "Can't open $infile!\n";
 
 # get max qsy count
 #print "Max QSY count (CQWW=8, ARRLDX=6): ";
@@ -35,8 +39,8 @@ open F, $infile or die "Can't open $infile!\n";
 
 # open output files
 #open FO, ">new_"."$infile" or die "Can't create output Cabrillo file!\n";
-open F0, ">RunQSOs.txt" or die "Can't create an output file!\n";
-open F1, ">MultQSOs.txt" or die "Can't create an output file!\n";
+open $F0, ">RunQSOs.txt" or die "Can't create an output file!\n";
+open $F1, ">MultQSOs.txt" or die "Can't create an output file!\n";
 
 my @qsos;	# original qso array read from source
 my(@qso0, @qso0a);	# run qso array
@@ -55,7 +59,7 @@ my $qsolen;	#length of a QSO line
 #}
 
 # QSO contents
-while(<F>) {
+while(<$F>) {
 	# see if qso line?
 	if(/^QSO: /) {
 		push @qsos, $_;
@@ -63,7 +67,7 @@ while(<F>) {
 }
 # @qsos array is ready here
 
-close F;
+close $F;
 
 # locating the last column where TX# is written excluding LF, CR and any trailing spaces
 my $temp = $qsos[0];
@@ -90,48 +94,86 @@ while($q = shift @qsos) {
 	}
 }
 
-#while($q = shift @qso0) {
+# calling main analysis routines
+print "RUN transmitter\n";
+&tag_qsys($F0, \@qso0, \@qso0a);
+print $nviol0." violation(s) found.\n";
 
+print "MULT transmitter\n";
+&tag_qsys($F1, \@qso1, \@qso1a);
+print $nviol1." violation(s) found.\n";
 
-#}
+# close output files
+close $F0;
+close $F1;
 
-#&tag_time(\@qso0);
-
-
-
-
-
-
-
-
-
-
-
-
-
-print F0 @qso0;
-print F1 @qso1;
-
-close F0;
-close F1;
+exit 0;
 
 ### subroutines
 
-sub tag_time {
-	print "tell me";
-	my($aref) = @_;
-	print $aref;
-	my @qso = @{$aref};
-	print @qso;
+# tagging QSYs in each of Run and Mult QSO logs
+sub tag_qsys {
+	my($Fa, @qsi, @qso) = ($_[0], @{$_[1]}, @{$_[2]});
 
+	my($curdate, $newdate, $curtime, $newtime, $curband, $newband);
+	
+	# initialise the first QSO
+	$q = shift @qsi;
+	($curdate, $curtime, $curband) = &get_info($q);
+	push @qso, $q;
+		
+	# iterate the rest of the QSOs
+	while($q = shift @qsi) {
+		# get info on new QSO
+		($newdate, $newtime, $newband) = &get_info($q);
+
+		if($newband != $curband) {
+			# if on a new band
+			push @qso, "---------- elapsed ";
+			
+			if($newdate ne $curdate) {
+				# date was changed
+				my $newtime2 = substr($newtime, 0, 2);
+				print $curtime." ".$newtime." ".$newtime2."\n";
+	#			my $newtime2 = substr($newtime, 0, 2) + 24;
+	#			print $newtime2;
+				#&add_date()
+				
+				$curdate = $newdate;
+			}
+			
+			
+			
+			push @qso, " ---------\n";
+			$curband = $newband;
+		}
+		
+		# renew timestamp and write a QSO
+		$curtime = $newtime;
+		push @qso, $q;		
+	}
+
+	print $Fa @qso;
 }
 
+# get info from a QSO: record
+sub get_info {
+	my @qs = split /\s+/, $_[0];
+	my @ret;
+	$ret[0] = $qs[3];
+	$ret[1] = $qs[4];
+	$ret[2] = &get_band($qs[1]);
+	return @ret;
+}
 
-
-
-
-
-exit 0;
+# getting band from freq in kHz
+sub get_band {
+	for(my $i=0; $i<6; ++$i) {
+		# 2nd field in a qso is the freq
+		return $bands[$i] if($map_l[$i]<=$_[0] && $_[0]<=$map_h[$i]);
+	}
+	die "Inconsistent QSO Freq was found.\n>>> $q\n";
+}
 
 =pod
 while($q = shift @qsos) {
@@ -360,25 +402,6 @@ sub qsy_rpt {
 sub set_tx {
 	# last column of the QSO line
 	substr($_[0], $qsolen-1) = $_[1]."\n";
-}
-
-# getting band in a QSO: record
-sub get_band {
-	my @qs = split /\s+/, $_[0];
-
-	for(my $i=0; $i<6; ++$i) {
-		# 2nd field in a qso is the freq
-		return $bands[$i] if($map_l[$i]<=$qs[1] && $qs[1]<=$map_h[$i]);
-	}
-	die "Inconsistent QSO Freq was found.\n>>> $q\n";
-}
-
-# getting date and hour in a QSO: record
-sub get_hour {
-	my @qs = split /\s+/, $_[0];
-
-	return $qs[3]." ".substr($qs[4], 0, 2);
-	# in "2004-11-28 03" like format
 }
 
 =cut
