@@ -1,24 +1,11 @@
 RUN transmitter
-QSO:  7051 CW 2014-11-30 2038 JA1BPA        599 25     YR1A          599 20     0 
-QSO:  7051 CW 2014-11-30 2038 JA1BPA        599 25     LY2MM         599 15     0 
-QSO:  7052 CW 2014-11-30 2038 JA1BPA        599 25     S50A          599 15     0 
-QSO:  7076 CW 2014-11-30 2041 JA1BPA        599 25     IK1VEK        599 15     0 
-QSO:  7076 CW 2014-11-30 2042 JA1BPA        599 25     R7KH          599 16     0 
-QSO:  7076 CW 2014-11-30 2042 JA1BPA        599 25     UR5MM         599 16     0 
-QSO:  7076 CW 2014-11-30 2042 JA1BPA        599 25     SP6BAA        599 15     0 
-QSO:  7076 CW 2014-11-30 2044 JA1BPA        599 25     OK2BRS        599 15     0 
-QSO:  7076 CW 2014-11-30 2044 JA1BPA        599 25     9A1P          599 15     0 
-QSO:  7076 CW 2014-11-30 2045 JA1BPA        599 25     I3EVK         599 15     0 
-QSO:  7076 CW 2014-11-30 2045 JA1BPA        599 25     S59AA         599 15     0 
-QSO:  7076 CW 2014-11-30 2046 JA1BPA        599 25     YT0A          599 15     0 
-QSO:  7076 CW 2014-11-30 2046 JA1BPA        599 25     UR5AMJ        599 16     0 
-13 violation(s) found.
+0 violation(s) found.
 
 MULT transmitter
-QSO: 28018 CW 2014-11-29 2352 JA1BPA        599 25     3D2KM         599 32     1 
-QSO: 28064 CW 2014-11-29 2354 JA1BPA        599 25     HC2AO/8       599 10     1 
-QSO: 14068 CW 2014-11-30 0502 JA1BPA        599 25     ZM4T          599 32     1 
-QSO: 14031 CW 2014-11-30 0503 JA1BPA        599 25     YP0HQ         599 20     1 
-QSO:  1821 CW 2014-11-30 1207 JA1BPA        599 25     RU0LAX        599 19     1 
-QSO:  1823 CW 2014-11-30 1246 JA1BPA        599 25     W2VJN         599 03     1 
+QSO: 28018 CW 2014-11-29 2352 JA1BPA        599 25     3D2KM         599 32     1
+QSO: 28064 CW 2014-11-29 2354 JA1BPA        599 25     HC2AO/8       599 10     1
+QSO: 14068 CW 2014-11-30 0502 JA1BPA        599 25     ZM4T          599 32     1
+QSO: 14031 CW 2014-11-30 0503 JA1BPA        599 25     YP0HQ         599 20     1
+QSO:  1821 CW 2014-11-30 1207 JA1BPA        599 25     RU0LAX        599 19     1
+QSO:  1823 CW 2014-11-30 1246 JA1BPA        599 25     W2VJN         599 03     1
 6 violation(s) found.
