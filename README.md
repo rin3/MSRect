@@ -1,24 +1,24 @@
 ### _MSRect.pl_
 M/S Log Rectifier
 =================
-Cabrillo log checker for its compliance to the rules
-for Multi SingleTX contest logs
+Cabrillo log checker for its compliance to 10 minutes QSY rules
+of Multi SingleTX categories in CQ WW contests
 
 rin fukuda, jg1vgx@jarl.com
-ver 0.00 - Apr 2015
+ver 0.01 - Apr 2015
 
 WARNING
 -------
-This program is NOT intended for use with post-contest rubber-clocking or log massaging purposes.
+This program is NOT intended for the purpose of post-contest rubber-clocking or log massaging.
 If you find you have violated the band change rules, mark the QSOs as X-QSOs or consider submitting your log in less restrictive categories such as multi-multi.
 
 Requirements
 ------------
-You need Perl package to run this script. If you are on Windows, use of ActivePerl (http://www.activestates.com/) is recommended. 
+You need a Perl package to run this script. If you are on Windows, ActivePerl (http://www.activestates.com/) is a good option. 
 
 Limitations
 -----------
-Currently, only band change violation is checked. (Whether QSOs made in mult transmitter is really a new mult is unchecked.)
+Currently, only band change violation is checked. (Whether QSOs made on mult transmitter is really a new mult is NOT checked.)
 
 How to Use
 ----------
@@ -32,7 +32,8 @@ http://www.kkn.net/~trey/cabrillo/qso-template.html
     > perl MSRect.pl
     ```
     
-    then, enter the file name of the Cabrillo log. Hour summary of QSY counts will be shown in the screen. If excess QSYs had been detected, you will be warned. If you find too many violations, consider submitting your log into Multi/Multi category rather than Multi/Single.
+    then, enter the file name of the Cabrillo log. Results will be printed on the screen output and in 'report.txt' file created in the same folder.
+    Hour summary of QSY counts will be shown in the screen. If excess QSYs had been detected, you will be warned. If you find too many violations, consider submitting your log into Multi/Multi category rather than Multi/Single.
 
 3. The correctly numbered new Cabrillo log will be created as "new_" plus original file name. The original Cabrillo log is untouched. In addition, two report files are created.
 
@@ -41,4 +42,5 @@ http://www.kkn.net/~trey/cabrillo/qso-template.html
 
 Version History
 ---------------
-0.00 - Apr 2015
+0.01 - Apr 2015
+- Initial working version.
