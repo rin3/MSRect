@@ -4,7 +4,7 @@
 # --- M/S Log Rectifier ---
 #
 # Cabrillo log checker for its compliance to 10 minutes QSY rules
-# of Multi SingleTX entries in CQ WW contests
+# of Multi SingleTX categories in CQ WW contests
 #
 # rin fukuda, jg1vgx@jarl.com
 # ver 0.01 - Apr 2015
