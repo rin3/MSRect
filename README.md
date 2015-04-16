@@ -32,13 +32,8 @@ http://www.kkn.net/~trey/cabrillo/qso-template.html
     > perl MSRect.pl
     ```
     
-    then, enter the file name of the Cabrillo log. Results will be printed on the screen output and in 'report.txt' file created in the same folder.
-    Hour summary of QSY counts will be shown in the screen. If excess QSYs had been detected, you will be warned. If you find too many violations, consider submitting your log into Multi/Multi category rather than Multi/Single.
-
-3. The correctly numbered new Cabrillo log will be created as "new_" plus original file name. The original Cabrillo log is untouched. In addition, two report files are created.
-
-- bandchanges.txt: Consecutive QSOs on the same band is treated as one in the program. Change# is a serial number for such bundled QSOs. TX#s assigned for each bundle of QSOs are shown.
-- qsy_report.txt: Flow of QSYs for entire contest is shown using text graphics. You can count and confirm that the QSY counts are in fact less than eight times for each TX.
+    then, enter the file name of the Cabrillo log.
+    Results will be printed on the screen output and in 'report.txt' file created in the same folder. Additionally, separate logs for Run and Mult transmitters are created - 'RunQSOs.txt' and 'MultQSOs.txt' - in which QSYs are tagged and intervals are calculated. 
 
 Version History
 ---------------
