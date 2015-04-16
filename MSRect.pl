@@ -3,8 +3,8 @@
 # MSRect.pl
 # --- M/S Log Rectifier ---
 #
-# Cabrillo log checker for its compliance to the rules
-# for Multi SingleTX contest logs
+# Cabrillo log checker for its compliance to 10 minutes QSY rules
+# of Multi SingleTX entries in CQ WW contests
 #
 # rin fukuda, jg1vgx@jarl.com
 # ver 0.01 - Apr 2015
@@ -16,9 +16,6 @@ my @bands = qw/  160   80   40    20    15    10 /;
 my @map_l = qw/ 1800 3500 7000 14000 21000 28000 /;
 my @map_h = qw/ 2000 4000 7300 14350 21450 29700 /;
 
-# file handles
-my($F, $F0, $F1, $FO);		# file handles
-
 # Greetings
 print "\n*** M/S Log Rectifier ***\n\n";
 
@@ -26,20 +23,21 @@ print "\n*** M/S Log Rectifier ***\n\n";
 print "Input file name (Cabrillo): ";
 chomp(my $infile = <STDIN>);
 print "\n";
-open $F, $infile or die "Can't open $infile!\n";
+open my $F, $infile or die "Can't open $infile!\n";
 
 # open output files
-open $F0, ">RunQSOs.txt" or die "Can't create an output file!\n";
-open $F1, ">MultQSOs.txt" or die "Can't create an output file!\n";
-open $FO, ">report.txt" or die "Can't create an output file!\n";
+open my $F0, ">RunQSOs.txt" or die "Can't create an output file!\n";
+open my $F1, ">MultQSOs.txt" or die "Can't create an output file!\n";
+open my $FO, ">report.txt" or die "Can't create an output file!\n";
 
+# variables
 my @qsos;	# original qso array read from source
 my(@qso0, @qso0a);	# run qso array
 my(@qso1, @qso1a);	# mult qso array
-#my $lastline;
 my $qsolen;	#length of a QSO line
+my $q;	# for a QSO record
 
-# QSO contents
+# read Cabrillo log contents
 while(<$F>) {
 	# see if qso line?
 	if(/^QSO: /) {
@@ -54,8 +52,6 @@ close $F;
 my $temp = $qsos[0];
 chop($temp) while(substr($temp, length($temp)-1, 1) eq chr(10) or substr($temp, length($temp)-1, 1) eq chr(13) or substr($temp, length($temp)-1, 1) eq ' ');
 $qsolen = length($temp);
-
-my $q;
 
 # sort and split run and mult qsos into each array
 while($q = shift @qsos) {
@@ -96,8 +92,8 @@ sub check_qsys {
 	my($qsydate, $qsytime, $interval);
 	
 	# initialise violation count and flag
-	my $nviol = 0;
-	my $fviol = 0;
+	my $nviol = 0;	# counter
+	my $fviol = 0;	# flag
 	
 	# initialise the first QSO
 	$q = shift @qsi;
@@ -144,11 +140,12 @@ sub check_qsys {
 			# print closing dashes
 			push @qso, " ---------\n";
 			
-			# keep QSY band and time stamp
+			# renew to QSY band
 			$lastband = $newband;
 			# keep new QSY time stamp in other variables
 			$qsydate = $newdate;
-			$qsytime = $newtime;			
+			$qsytime = $newtime;
+			
 		} elsif($fviol == 1) {
 			# no QSY, but the last Q was a violation
 
