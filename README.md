@@ -33,7 +33,7 @@ http://www.kkn.net/~trey/cabrillo/qso-template.html
     ```
     
     then, enter the file name of the Cabrillo log.
-    Results will be printed on the screen output and in 'report.txt' file created in the same folder. Additionally, separate logs for Run and Mult transmitters are created - 'RunQSOs.txt' and 'MultQSOs.txt' - in which QSYs are tagged and intervals are calculated. 
+    Results will be printed on the screen output and as well as 'report.txt' file created in the same folder. Additionally, separate logs for Run and Mult transmitters are created - 'RunQSOs.txt' and 'MultQSOs.txt' - in which QSYs are tagged and intervals are calculated. 
 
 Version History
 ---------------
